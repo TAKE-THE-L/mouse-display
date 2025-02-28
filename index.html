@@ -1,0 +1,44 @@
+<p>const extension = class {</p>
+    <p>constructor() {</p>
+        <p>this.name = "Near Mouse Display"; // Extension Name</p>
+    <p>}</p>
+
+    <p>// Block to display text near the mouse</p>
+    <p>getBlocks() {</p>
+        <p>return [</p>
+            <p>{</p>
+                <p>opcode: 'displayTextNearMouse',</p>
+                <p>blockType: TurboWarp.BlockType.REPORTER,</p>
+                <p>text: 'display text near mouse',</p>
+                <p>func: this.displayTextNearMouse,</p>
+            <p>},</p>
+        <p>];</p>
+    <p>}</p>
+
+    <p>// Function that runs when the block is executed</p>
+    <p>displayTextNearMouse() {</p>
+        <p>// Get the mouse's current position in TurboWarp</p>
+        <p>const mouseX = TurboWarp.vm.mouseX;</p>
+        <p>const mouseY = TurboWarp.vm.mouseY;</p>
+
+        <p>const distance = 10; // Distance from the mouse pointer where we want to place the text</p>
+        <p>const newX = mouseX + distance; // Adjust X position</p>
+        <p>const newY = mouseY + distance; // Adjust Y position</p>
+
+        <p>// Create a new sprite for displaying the text</p>
+        <p>const sprite = TurboWarp.vm.createSprite('textSprite');</p>
+        
+        <p>// Set the costume to plain text (you may want to add a plain text costume or use an existing one)</p>
+        <p>const costume = new TurboWarp.Costume('plainText'); // Make sure the costume exists</p>
+        <p>sprite.setCostume(costume);</p>
+        
+        <p>sprite.setSize(50); // Adjust size of the text</p>
+        <p>sprite.setXY(newX, newY); // Position the sprite near the mouse</p>
+
+        <p>// Return the text (or string) to be displayed</p>
+        <p>return 'Hello!';</p>
+    <p>}</p>
+<p>};</p>
+
+<p>// Register the TurboWarp extension</p>
+<p>TurboWarp.registerExtension(extension);</p>
